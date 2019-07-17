@@ -64,6 +64,27 @@ void displayMatrix(vector<vector <Node> > adjMatrix,int rows, int columns){
 	}
 }
 
+vector<vector <Node> > genBasicGraph(int rowSize, int columnSize){
+	Node* temp = new Node(1);
+	vector<vector <Node> > graph;
+	
+	for(int i = 0; i<rowSize;i++){
+		graph[i].resize(columnSize);
+	}
+	graph[0][0] = *temp;
+	
+	for(int i = 1; i<rowSize && i<columnSize; i++){
+		temp = new Node(i);
+		graph[i][i] = *temp;
+		temp->addEdge(i-1,i-1,i);
+		graph[i-1][i-1].addEdge(i,i,i);
+	}
+	
+	
+	return graph;
+	
+}
+
 
 int main(){
 	vector<vector<Node> > graph;
